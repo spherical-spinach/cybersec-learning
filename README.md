@@ -38,3 +38,8 @@ Useful search engines
 - [Censys](https://search.censys.io/) - search internet connected hosts, websites, certificates etc.
 - [Virustotal](https://www.virustotal.com/) - scan files, URLs or hashes for viruses with aggregated results from multiple AV engines
 - [Have I been pawned](https://haveibeenpwned.com/) - notifies if an email has appeared in a leaked data breach
+
+## Vulnerabilities and Exploits
+
+- [CVE program](https://www.cve.org/) - dictionary of vulnerabilities
+- [Exploit database](https://www.exploit-db.com/) - database of exploits for targetting vulnerabilities
