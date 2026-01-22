@@ -1,8 +1,8 @@
 # Purpose of the repository
 
-This repo is for notes for what I'm learning about cyber security in TryHackMe and other resources.
+This repo is for notes for new stuff I'm learning about cyber security in TryHackMe and other resources. Mostly reflects my [TryHackMe profile](https://tryhackme.com/p/tryhackme.ulny8) progress.
 
-## Windows
+## Windows administration
 
 ### Useful admin tools (open easily with run prompt)
 	
@@ -29,3 +29,12 @@ A tool called Microsoft Management Console (MMC) seems to be the basis for all o
 File -> Add/Remove Snap-in.
 
 Even the MMC UI looks alike to many admin tools with its three info columns.
+
+## Search
+
+Useful search engines
+
+- [Shodan](https://www.shodan.io/) - search internet connected devices like servers, routers, webcams, IoT devices
+- [Censys](https://search.censys.io/) - search internet connected hosts, websites, certificates etc.
+- [Virustotal](https://www.virustotal.com/) - scan files, URLs or hashes for viruses with aggregated results from multiple AV engines
+- [Have I been pawned](https://haveibeenpwned.com/) - notifies if an email has appeared in a leaked data breach
