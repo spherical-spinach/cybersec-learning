@@ -6,18 +6,32 @@ This repo is for notes for useful resources and knowledge I'm learning about cyb
 
 ### Active Directory
 
+`dsa.msc` - Active Directory Users and Computers. Use this snap-in to manage AD services. (dsa stands for Directory Services Administration)
+
+`gpmc.msc` - Group Policy Management. Use this snap-in to manage Group Policies in AD environment.
+
 #### What is Active Directory (AD)?
 
 - Way to control an organisation's devices (like workstations, file servers, database servers) from a single point called Domain Controller (DC). No need for tech-support to visit on-site for seven different offices fixing computers and configuring users. 
+
+#### What an Active Directory Domain is?
+
+- Domain is a group of users and computers under the admin of the network
 - TWO main advantages
     1. Centralised identity management
     2. Managing security policies 
 
-#### What an Active Directory Domain is?
-
 #### What components go into an Active Directory Domain?
 
+- Domain Controller (DC) - Server running AD services
+- Organisational Units (OUs) - containers that could e.g. reflect company's structure: IT, Sales, HR.
+- Group Policy Objects (GPOs) - Set of policies that can be applied to an account or OU. E.g. "Sales can't open control panel".
+
 #### Forests and Domain Trust
+
+- Multiple domains can be joined, making a tree
+- Multiple trees can be joined, making a forest
+- Domain A can trust domain B, granting Domain B access to resources in Domain A
 
 ### Useful admin tools (open easily with run prompt)
 	
