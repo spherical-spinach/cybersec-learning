@@ -1,8 +1,23 @@
 # Purpose of the repository
 
-This repo is for notes for new stuff I'm learning about cyber security in TryHackMe and other resources. Mostly reflects my [TryHackMe profile](https://tryhackme.com/p/tryhackme.ulny8) progress.
+This repo is for notes for useful resources and knowledge I'm learning about cyber security in TryHackMe and other resources. Mostly reflects my [TryHackMe profile](https://tryhackme.com/p/tryhackme.ulny8) progress. Written without using generative AI.
 
 ## Windows administration
+
+### Active Directory
+
+#### What is Active Directory (AD)?
+
+- Way to control an organisation's devices (like workstations, file servers, database servers) from a single point called Domain Controller (DC). No need for tech-support to visit on-site for seven different offices fixing computers and configuring users. 
+- TWO main advantages
+    1. Centralised identity management
+    2. Managing security policies 
+
+#### What an Active Directory Domain is?
+
+#### What components go into an Active Directory Domain?
+
+#### Forests and Domain Trust
 
 ### Useful admin tools (open easily with run prompt)
 	
