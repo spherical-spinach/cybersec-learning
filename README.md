@@ -33,7 +33,45 @@ This repo is for notes for useful resources and knowledge I'm learning about cyb
 - Multiple trees can be joined, making a forest
 - Domain A can trust domain B, granting Domain B access to resources in Domain A
 
-### Useful admin tools (open easily with run prompt)
+### Command line
+
+`cmd.exe` - Windows' default command line interpreter
+
+#### All around useful commands
+
+`more` - Show output page by page. Pipe other commands to it like this: `[command] | more`. Or display long text files: `more file.txt`. Press Spacebar to flip page and Enter to go line by line
+
+`cls` - Clears the screen
+
+`help` or `/?` - Show help info for a command. Use: `help [command]` or `[command] /?`
+
+`shutdown /s` - Shuts down system
+
+#### Commands for system info 
+
+`ver` - Display Windows version
+
+`systeminfo` - Displays operating system configuration info
+
+`tasklist` - List running processes
+
+`set` - Displays, sets, or removes cmd.exe environment variables (e.g. Path)
+
+`driverquery` - Display a list of installed device drivers
+
+#### Commands for network troubleshooting
+
+`ipconfig` - Display network info like IP address, subnet mask and default gateway. `ipconfig /all` shows more info.
+
+`ping` - Test if a machine can reach destination in internet. Also displays avg round trip time.
+
+`netstat` - Display current network connections and listening ports
+
+`tracert` - Traces network route traversed to reach the target
+
+`nslookup` - Looks up host or domain and returns its IP address
+
+### Useful GUI admin tools (open easily with run prompt)
 	
 `msconfig` - **System configuration**. The _tools_ tab offers useful listing of some admin tools
 
