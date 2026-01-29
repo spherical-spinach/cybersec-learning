@@ -71,6 +71,79 @@ This repo is for notes for useful resources and knowledge I'm learning about cyb
 
 `nslookup` - Looks up host or domain and returns its IP address
 
+### Powershell
+
+`powershell` - Open powershell, an object-oriented command-line shell
+
+#### General cmdlets
+
+PowerShell commands are known as `cmdlets`. They follow Verb-Noun naming convention, e.g. Get-Content or Set-Location.
+
+`Get-Command`
+
+Display available commands. Returns `CommandInfo` objects with properties `CommandType`, `Name`, `Version` and `Source`. Filter results with e.g. `Get-Command -CommandType "Function"`
+
+`Get-Help`
+
+Usage: Display help page for a cmdlet. Usage: `Get-Help` `cmdlet` [optional: `-examples`]
+
+`Invoke-Command` - used to run scripts and commands on local and remote computers
+
+#### Piping: Sorting, filtering, comparison operators and search (grep)
+
+Sort like this:
+
+`Get-ChildItem | Sort-Object Length`
+
+Cmdlets return objects. Objects and their properties can be piped. E.g. get all objects in current directory, and show only those whose "extension" property is ".txt":
+
+`Get-ChildItem | Where-Object -Property "Extension" -eq ".txt"`
+
+The command above uses `Where-Object` cmdlet and `-eq` (equal to) **comparison operator**. Useful **comparison operators**:
+
+`-eq` - equal to
+
+`-gt` - greater than
+
+`-ge` - greater or equal to
+
+`-lt` - less than
+
+`-le` - less than or equal to
+
+There is also the matching operator: `-like`. It matches a specified pattern, e.g. all current directory's objects that name starts with "the":
+
+`Get-ChildItem | Where-Object -Property "Name" -like "the*"`
+
+
+This is how you can select properties from piped input, e.g. select only properties `Name` and `Length` from current directory's objects
+
+`Get-ChildItem | Select-Object Name,Length`
+
+Lastly, grep with `Select-String` like this:
+
+`Select-String -Path ".\captain-hat.txt" -Pattern "hat"`
+
+#### System and Network information
+
+`Get-ComputerInfo` - retrieves system information about OS, hardware, BIOS and more. Return more stuff that cmd's `systeminfo`
+
+`Get-LocalUser` - lists all the local user accounts on the system. Use for managing user accounts and understanding machine's security conf.
+
+`Get-NetIPConfiguration` - similar to ipconfig, displays network interfaces, IP adresses, DNS servers, gateway conf
+
+`Get-NetIPAddress` - detailed info on all (both active and inactive) IP addresses configured on the system
+
+#### Real-Time System Analysis
+
+`Get-Process` - show running processes, useful for troubleshooting. E.g. find process by pid: `Get-Process -Id 1234`
+
+`Get-Service` - show running, stopped and paused services. Used for troubleshooting and digital forensics for suspicious services
+
+`Get-NetTCPConnection` - display current TCP connections for finding hidden backdoors or suspicious connections
+
+`Get-FileHash` - generate file hashes. Useful for IR, threat hunting, malware analysis
+
 ### Useful GUI admin tools (open easily with run prompt)
 	
 `msconfig` - **System configuration**. The _tools_ tab offers useful listing of some admin tools
@@ -96,6 +169,26 @@ A tool called Microsoft Management Console (MMC) seems to be the basis for all o
 File -> Add/Remove Snap-in.
 
 Even the MMC UI looks alike to many admin tools with its three info columns.
+
+
+## Linux shells
+
+- Most distros use Bash as their default shell. You can switch shell with `[shell name]`. Some common shells:
+
+- `bash`
+- `zsh` - very customizable
+- `fish` - quite friendly with auto-correction and syntax highlighting
+- `rbash`
+- `dash`
+- `tmux`
+
+- To see which shell is running: `echo $SHELL`
+
+### Scripts
+
+- Shebang means chars at the start of the script that tell the interpreter, e.g. bash:
+
+`#!/bin/bash`
 
 ## Search
 
