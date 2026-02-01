@@ -190,6 +190,10 @@ Even the MMC UI looks alike to many admin tools with its three info columns.
 
 `#!/bin/bash`
 
+### Useful commands
+
+`ip a s` (short for `ip address show`) and `ifconfig` - Display network interfaces, IP addresses and more
+
 ## Search
 
 Useful search engines
@@ -203,3 +207,108 @@ Useful search engines
 
 - [CVE program](https://www.cve.org/) - dictionary of vulnerabilities
 - [Exploit database](https://www.exploit-db.com/) - database of exploits for targetting vulnerabilities
+
+## OSI-model and general networking stuff
+
+RFC 1918 defines the following three ranges of private IP addresses:
+
+- `10.0.0.0` - `10.255.255.255` `(10/8)`
+- `172.16.0.0` - `172.31.255.255` `(172.16/12)`
+- `192.168.0.0` - `192.168.255.255` `(192.168/16)`
+
+- Port numbers use two octets, so they range from 1 to 65536. Port 0 is reserved to indicate that port number is not specified or is unknown. Also DHCP uses it to indicate that a client doesn't have an assigned IP address yet and is looking for one.
+
+### OSI model
+
+Open Systems Interconnection model.
+
+Important concepts that relate to each layer. Mnemonic device for layer initials:
+
+`Please Do Not Throw Spinach Pizza Away!` ---> PDNTSPA
+
+#### Layer 1 - Physical
+
+- Cables or antennas
+- Electrical, optical or wireless signal
+- Defining binary digits 0 and 1
+
+#### Layer 2 - Data link
+
+Represents protocol that transfers data between two nodes on the same network segment, e.g. computer A and B both connected to a switch.
+
+- MAC addresses
+- IEEE Ethernet standard, code: 802.3
+- IEEE WiFi standard, code: 802.11
+- There are wireless standards from different eras. Explanations:
+    - **802.11b**:  released 1999, operates at 2.4GHz, max speed 11 Mbps
+    - **802.11g**:  released 2003, operates at 2.4GHz, max speed 54 Mbps
+    - **802.11n**:  released 2009, operates at 2.4 and 5 GHz, max speed 600 Mbps
+    - **802.11ac**: released 2013, operates at 5GHz band, max speed 3.46 Gbps
+    - **802.11ax**: released 2020, operates at 2.4 and 5 GHz, max speed 9.6 Gbps
+
+- 802.11ax is also called Wi-Fi 6.
+
+#### Layer 3 - Network
+
+Layer 2 transfers data within a network. Layer 3 represents transferring data between networks.
+
+- Logical addressing and routing
+- IP, ICMP, and VPN protocols like IPSec and SSL/TLS VPN
+
+#### Layer 4 - Transport
+
+Enables end-to-end communication between running apsp on different hosts. Like mobile browser and some website.
+
+- flow control
+- segmentation
+- error correctoin
+- TCP, UDP
+
+#### Layer 5 - Session
+
+Responsible for establishing a **session** between two apps on different hosts. This includes
+
+- Initiating
+- Maintaining
+- Synchronising
+- Examples: Network File System (NFS) and Remopte Procedure Call (RPC)
+
+#### Layer 6 - Presentation
+
+Ensures data is delivered in a correct form for the application layer to understand. It handles data
+
+- Encoding (ASCII, Unicode)
+- Compression
+- Encryption
+- Examples: JPEG, GIF, PNG, MIME
+
+#### Layer 7 - Application
+
+Provides network services to end-user apps.
+
+- Examples: HTTP, FTP, DNS, POP3, SMTP, IMAP
+
+### TCP/IP model
+
+TCP/IP model comprises of 4 layers, top to bottom:
+
+- Application layer
+- Transport layer
+- Internet layer
+- Link layer
+
+| Layer Number | ISO OSI Model      | TCP/IP Model (RFC 1122) | Protocols                                          |
+|--------------|---------------------|-------------------------|----------------------------------------------------|
+| 7            | Application Layer    | Application Layer       | HTTP, HTTPS, FTP, POP3, SMTP, IMAP, Telnet, SSH   |
+| 6            | Presentation Layer   |                         |                                                    |
+| 5            | Session Layer        |                         |                                                    |
+| 4            | Transport Layer      | Transport Layer         | TCP, UDP                                           |
+| 3            | Network Layer        | Internet Layer          | IP, ICMP, IPSec                                   |
+| 2            | Data Link Layer      | Link Layer              | Ethernet 802.3, WiFi 802.11                       |
+| 1            | Physical Layer       |                         |                                                    |
+
+- Encapsulation
+1. Application data 
+2. TCP or UDP adds TCP **segment** or UDP **datagram** header
+3. IP adds an IP header to the TCP segment or UPD datagram, making it a **packet**
+4. Ethernet/WiFi adds header and trailer to the packet, making it a **frame**
