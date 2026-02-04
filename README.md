@@ -1,6 +1,6 @@
 # Purpose of the repository
 
-This repo is for notes for useful resources and knowledge I'm learning about cyber security in TryHackMe and other resources. Mostly reflects my [TryHackMe profile](https://tryhackme.com/p/tryhackme.ulny8) progress. Written without using generative AI.
+This repo is for notes for useful resources and knowledge I'm revising and learning about cyber security in TryHackMe and other resources. Mostly reflects my [TryHackMe profile](https://tryhackme.com/p/tryhackme.ulny8) progress. Written without using generative AI.
 
 ## Windows administration
 
@@ -12,14 +12,14 @@ This repo is for notes for useful resources and knowledge I'm learning about cyb
 
 #### What is Active Directory (AD)?
 
-- Way to control an organisation's devices (like workstations, file servers, database servers) from a single point called Domain Controller (DC). No need for tech-support to visit on-site for seven different offices fixing computers and configuring users. 
+- Way to control an organisation's devices (like workstations, file servers, database servers) from a single point called Domain Controller (DC). No need for tech-support to visit on-site for seven different offices fixing computers and configuring users.
 
 #### What an Active Directory Domain is?
 
 - Domain is a group of users and computers under the admin of the network
 - TWO main advantages
-    1. Centralised identity management
-    2. Managing security policies 
+  1. Centralised identity management
+  2. Managing security policies
 
 #### What components go into an Active Directory Domain?
 
@@ -47,7 +47,7 @@ This repo is for notes for useful resources and knowledge I'm learning about cyb
 
 `shutdown /s` - Shuts down system
 
-#### Commands for system info 
+#### Commands for system info
 
 `ver` - Display Windows version
 
@@ -115,7 +115,6 @@ There is also the matching operator: `-like`. It matches a specified pattern, e.
 
 `Get-ChildItem | Where-Object -Property "Name" -like "the*"`
 
-
 This is how you can select properties from piped input, e.g. select only properties `Name` and `Length` from current directory's objects
 
 `Get-ChildItem | Select-Object Name,Length`
@@ -145,7 +144,7 @@ Lastly, grep with `Select-String` like this:
 `Get-FileHash` - generate file hashes. Useful for IR, threat hunting, malware analysis
 
 ### Useful GUI admin tools (open easily with run prompt)
-	
+
 `msconfig` - **System configuration**. The _tools_ tab offers useful listing of some admin tools
 
 `mmc` - **Microsoft Management Console**. Basically abstracted version of all admin tools. Used to load and save admin tools into "snap-ins". Use this if you have common set of tools to use (like firewall, Disk Management and Device Manager) and don't like to open them every time separately.
@@ -158,18 +157,17 @@ Lastly, grep with `Select-String` like this:
 
 `resmon.exe` - **Resource Monitor**. Monitor CPU, Memory, Disk, Network resources. Includes live graphs.
 
-`regedt32.exe` - **Registry Editor**. Configure, manage and troubleshoot by editing Windows registry keys and their values. 
+`regedt32.exe` - **Registry Editor**. Configure, manage and troubleshoot by editing Windows registry keys and their values.
 
 ### Other notes
 
-Mind blow: 
+Mind blow:
 
 A tool called Microsoft Management Console (MMC) seems to be the basis for all other admin tools. It enables you to save or open console sessions a.k.a. "snap-ins". The file extension for snap-in is .msc, which stands for Microsoft Saved Console. Basically any commonly used admin tool like **Windows Defender Firewall with Advanced Security** or **Device Manager** is a simplified instance of MMC. This can be demonstrated by opening MMC (type mmc to run prompt) and adding a new snap-in to the console:
 
 File -> Add/Remove Snap-in.
 
 Even the MMC UI looks alike to many admin tools with its three info columns.
-
 
 ## Linux shells
 
@@ -194,6 +192,8 @@ Even the MMC UI looks alike to many admin tools with its three info columns.
 
 `ip a s` (short for `ip address show`) and `ifconfig` - Display network interfaces, IP addresses and more
 
+`telnet [IP address] [port]` - access and manage devices over a network. Unencrypted, so be careful. Use for troubleshooting servers only. Example: `telnet 192.168.2.15 80` would connect to HTML server on `192.168.2.15`
+
 ## Search
 
 Useful search engines
@@ -209,6 +209,18 @@ Useful search engines
 - [Exploit database](https://www.exploit-db.com/) - database of exploits for targetting vulnerabilities
 
 ## OSI-model and general networking stuff
+
+Everything but DNS in this table uses TCP as a transport protocol. DNS uses UDP or TCP as a fallback.
+
+| Unsecure protocol | <- Default Port Number | Default port number -> | Secure protocol |
+| ----------------- | ---------------------- | ---------------------- | --------------- |
+| TELNET            | 23                     | 22                     | SSH & SFTP      |
+| HTTP              | 80                     | 443                    | HTTPS           |
+| FTP               | 21                     | 990                    | FTPS            |
+| SMTP              | 25                     | 465 and 587            | SMTPS           |
+| IMAP              | 143                    | 993                    | IMAPS           |
+| POP3              | 110                    | 995                    | POP3S           |
+| DNS               | 53 (UDP or TCP)        | -                      | -               |
 
 RFC 1918 defines the following three ranges of private IP addresses:
 
@@ -240,11 +252,11 @@ Represents protocol that transfers data between two nodes on the same network se
 - IEEE Ethernet standard, code: 802.3
 - IEEE WiFi standard, code: 802.11
 - There are wireless standards from different eras. Explanations:
-    - **802.11b**:  released 1999, operates at 2.4GHz, max speed 11 Mbps
-    - **802.11g**:  released 2003, operates at 2.4GHz, max speed 54 Mbps
-    - **802.11n**:  released 2009, operates at 2.4 and 5 GHz, max speed 600 Mbps
-    - **802.11ac**: released 2013, operates at 5GHz band, max speed 3.46 Gbps
-    - **802.11ax**: released 2020, operates at 2.4 and 5 GHz, max speed 9.6 Gbps
+  - **802.11b**: released 1999, operates at 2.4GHz, max speed 11 Mbps
+  - **802.11g**: released 2003, operates at 2.4GHz, max speed 54 Mbps
+  - **802.11n**: released 2009, operates at 2.4 and 5 GHz, max speed 600 Mbps
+  - **802.11ac**: released 2013, operates at 5GHz band, max speed 3.46 Gbps
+  - **802.11ax**: released 2020, operates at 2.4 and 5 GHz, max speed 9.6 Gbps
 
 - 802.11ax is also called Wi-Fi 6.
 
@@ -297,18 +309,181 @@ TCP/IP model comprises of 4 layers, top to bottom:
 - Internet layer
 - Link layer
 
-| Layer Number | ISO OSI Model      | TCP/IP Model (RFC 1122) | Protocols                                          |
-|--------------|---------------------|-------------------------|----------------------------------------------------|
-| 7            | Application Layer    | Application Layer       | HTTP, HTTPS, FTP, POP3, SMTP, IMAP, Telnet, SSH   |
-| 6            | Presentation Layer   |                         |                                                    |
-| 5            | Session Layer        |                         |                                                    |
-| 4            | Transport Layer      | Transport Layer         | TCP, UDP                                           |
-| 3            | Network Layer        | Internet Layer          | IP, ICMP, IPSec                                   |
-| 2            | Data Link Layer      | Link Layer              | Ethernet 802.3, WiFi 802.11                       |
-| 1            | Physical Layer       |                         |                                                    |
+| Layer Number | ISO OSI Model      | TCP/IP Model (RFC 1122) | Protocols                                       |
+| ------------ | ------------------ | ----------------------- | ----------------------------------------------- |
+| 7            | Application Layer  | Application Layer       | HTTP, HTTPS, FTP, POP3, SMTP, IMAP, Telnet, SSH |
+| 6            | Presentation Layer |                         |                                                 |
+| 5            | Session Layer      |                         |                                                 |
+| 4            | Transport Layer    | Transport Layer         | TCP, UDP                                        |
+| 3            | Network Layer      | Internet Layer          | IP, ICMP, IPSec                                 |
+| 2            | Data Link Layer    | Link Layer              | Ethernet 802.3, WiFi 802.11                     |
+| 1            | Physical Layer     |                         |                                                 |
 
 - Encapsulation
-1. Application data 
+
+1. Application data
 2. TCP or UDP adds TCP **segment** or UDP **datagram** header
 3. IP adds an IP header to the TCP segment or UPD datagram, making it a **packet**
 4. Ethernet/WiFi adds header and trailer to the packet, making it a **frame**
+
+### Unsecure networking protocols
+
+#### DHCP - Dynamic Host Configuration Protocol
+
+When device is accessing network, these three things need to be known:
+
+1. IP address and subnet mask
+2. gateway address
+3. DNS server address
+
+These can be configured manually. But messing up the manual config could create problems like **address conflict**, i.e. two devices are configured with same IP address => host can't use network resources.
+
+Introducing DHCP (layer 7 protocol), which does this config automagically!
+
+- Uses UDP
+- Server listens on UDP port 67
+- Client sends fro UDP port 68
+
+DHCP follows four steps, abbreviated **DORA**:
+
+1. DHCP **Discover** - The client broadcasts DHCPDISCOVER message trying to reach local DHCP server
+2. DHCP **Offer** - The server responds with DHCPOFFER message with IP address available for the client
+3. DHCP **Request** - The client responds with DHCPREQUEST message indicating it has accepted the IP
+4. DHCP **Acknowledge** - The server responds with DHCPACK message to confirm that the IP is now assigned to the client
+
+#### ARP - Address Resolution Protocol
+
+- Layer 2 (data link layer) protocol for finding MAC addresses on local network
+- MAC address is needed if two hosts in local network want to send data link frames to each other
+- ARP is encapsulated directly to data link frames, no UDP or IP needed
+
+#### ICMP - Internet Control Message Protocol
+
+-
+- Mainly used for network diagnostics and error reporting
+- Used by `ping` and `traceroute` (Windows: `tracert`)
+- `ping` sends **ICMP Echo Request** (ICMP Type 8). Server sends back **ICMP Echo Reply** (ICMP Type 0)
+- `traceroute` utilizes IP field TTL (Time-To-Live). Every router decrements TTL by 1. When last router decrements it to 0, it drops it and sends **ICMP Time Exceeded message** (ICMP Type 11). Traceroute sets TTL from 1 to N so that routers between host and server send their info with ICMP Type 11.
+
+#### DNS - Domain Name System
+
+- Used for mapping domain names to IP addresses
+- Layer 7 (Application layer) protocol
+- Uses UDP port 53 or TCP port 53 as a default fallback
+
+- Different DNS records:
+  - **A record** - A for address. It maps hostname to **IPv4** address(es)
+  - **AAA Record** - Same as A record, but for **IPv6**
+  - **CNAME Record** - Maps domain name to another domain name (like example.com -> example.org)
+  - **MX Record** - Mail exchange record. Informs about domain's mail server
+
+#### HTTP and HTTPS
+
+- HTTP uses TCP port 80. Less common is 8080
+- HTTPS uses TCP port 443. Less common is 8443
+
+#### FTP - File transfer protocol
+
+- Listens on TCP port 21 by default
+- Faster than HTTP
+- Example commands in FTP
+  - `USER` - used to input username
+  - `PASS` - used to enter password
+  - `RETR` - used to download (retrieve) a file from the FTP server
+  - `STOR` - used to upload (store) a file to the FTP server
+
+#### SMTP - Simple Mail Transfer Protocol
+
+- SMTP server listens on TCP port 25 by default
+- Used for sending and receiving email
+- Common commands:
+  - `HELO` or `EHLO` - initiates SMTP session
+  - `MAIL FROM` - specifies the senders email address
+  - `RCPT TO` - specifies the recipient's email address
+  - `DATA` - indicates that the client will be sending the email content
+  - `.` - sent on a line by itself to indicate end of email
+
+#### POP3 - Post Office Protocol version 3
+
+- listens on TCP port 110 by default
+- Used to retrieve email
+- Client sends email using SMTP, and retrieves them using POP3. As a methaphor, SMTP would be giving your mail to mail person, and POP3 would be checking your post box on your yard for mail.
+- Common POP3 commands:
+  - `USER <username>` - identifies the user
+  - `PASS <password>` - provides password
+  - `STAT` - requests number of messages and total size
+  - `LIST` - lists all messages and their sizes
+  - `RETR <message number>` - retrieves a message by number
+  - `DELE <message number>` - marks a message for deletion
+  - `QUIT` - ends the POP3 session applying changes like deletions
+
+#### IMAP - Internet Message Access Protocol
+
+- Listens on TCP port 143 by default
+- Used for accessing emails from multiple devices. POP3 will just delete the accessed message, but IMAP syncs read, moved and deleted messages accross devices.
+- Uses more storage than POP3
+- Common IMAP commands
+  - `LOGIN <username> <password>` - authenticates user
+  - `SELECT <mailbox>` - selects mailbox folder to issue commands to
+  - `FETCH <mail_number> <data_item_name>` - E.g. `fetch 3 body[]` gets message 3 header and body
+  - `MOVE <sequence_set> <mailbox>` - moves the specified messages to another mailbox
+  - `COPY <sequence_set> <data_item_name>` - copies specified messages to another mailbox
+  - `LOGOUT` - logs out
+
+### Secure networking protocols
+
+The unsecure protocols can't guarentee data:
+
+- **Confidentiality** (somebody can read the message)
+- **Integrity** (somebody can tamper with the message)
+- **Authenticity** (somebody can fake a server sending the message)
+
+#### TLS
+
+- Operates at layer 4 (transport layer)
+- Securing protocols like HTTP -> HTTPS and DNS -> DoT
+- If server wants to use TLS, it needs TLS certificate from CA (Certificate Authority)
+  - Let's Encrypt provides them for free
+- Certs are installed on the host to confirm server is legit
+
+#### HTTPS (again)
+
+- Uses port 443 by default
+- HTTPS = HTTP + TLS
+- TLS is added after TCP handshake:
+- Unsecure **HTTP** steps for requesting a web page
+  1. Resolve domain name to IP address using DNS
+  2. Establish TCP three-way handshake with the server
+  3. Use HTTP requests like `GET / HTTP/1.1`
+- **COMPARE** this to **HTTPS** steps
+  1. Resolve domain name to IP address using DNS
+  2. Establish TCP three-way handshake with the server
+  3. **_Establish a TLS session_**
+  4. Use HTTP requests like `GET / HTTP/1.1`
+
+#### SMTPS, POP3S, IMAPS, FTPS
+
+- Same principle than HTTPS, **TLS session is established after TCP handshake**
+- They need TLS cert
+
+#### SSH & SFPT
+
+- Default port TCP 22
+- Use `-X` with SSH to support GUI
+- SFTP (SSH File Transfer Protocol) is part of SSH suite
+
+### Routing
+
+Here are common routing protocols
+
+- **OSPF** _(Open Shortest Path First)_ - routers share info about network topology
+- **EIGRP** _(Enhanced Interior Gateway Routing Protocol)_ - Cisco's proprietary protocol
+- **BGP** _(Border Gateway Protocol)_ - primary routing protocol used on the Internet
+- **RIP** _(Routing Information Protocol)_ - creates routing table with hops. Routers use route with fewest hops. Used in small networks
+
+#### NAT - Network Address Translation
+
+- Used by routers to map local IP to public IP
+- Saves a lot of IPv4 addresses, and increases security
+- NAT translates both local IP and port number to public IP and public port number
+- From Internet's perspective, local network has only one IP address, which is the router's
