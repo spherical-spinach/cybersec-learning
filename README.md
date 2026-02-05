@@ -487,3 +487,31 @@ Here are common routing protocols
 - Saves a lot of IPv4 addresses, and increases security
 - NAT translates both local IP and port number to public IP and public port number
 - From Internet's perspective, local network has only one IP address, which is the router's
+
+## Tools
+
+### Wireshark
+
+- Used for
+  - Detecting network problems like load failure points and congestion
+  - Detecting security anomalies like rogue hosts, weird port usage or suspicious traffic
+  - Learning protocol details like response codes and payload data
+
+- Packet details view shows OSI-model layer protocols and objects like Ethernet, MAC, TCP, IP, HTTP
+- Useful keyboard shortcuts
+  - `Ctrl+G` -> Go to packet by number
+  - `Ctrl+F` -> Find packet by content
+
+#### Packet filtering
+
+- You can filter captured or displayed packets by e.g. protocol name, port, IP address
+- You can combine these with boolean operators
+
+Useful filter stuff
+
+- **Analyse -> Apply as filter** or dragging will apply a packets field as filter
+- **Analyse -> Conversation Filter** will apply e.g. a TCP conversation between hosts
+- **Analyse -> Colorize Conversation** same as above, but no display filter, just coloring packets
+- **Analyse -> Prepare a filter** will add a filter without applying it. Then you can add more filters with **Apply as filter -> and/or...**
+- **Analyse -> Apply as Column** will add a packet's selected field e.g. TTL as a column
+- **Analyse -> Follow stream** will show reconstructed data stream of a conversation between hosts. Use to see cleartext POSTed passwords and server responsed easily.
