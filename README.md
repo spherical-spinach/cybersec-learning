@@ -194,6 +194,8 @@ Even the MMC UI looks alike to many admin tools with its three info columns.
 
 `telnet [IP address] [port]` - access and manage devices over a network. Unencrypted, so be careful. Use for troubleshooting servers only. Example: `telnet 192.168.2.15 80` would connect to HTML server on `192.168.2.15`
 
+`wc -l` - count how many lines on command output or file
+
 ## Search
 
 Useful search engines
@@ -488,7 +490,7 @@ Here are common routing protocols
 - NAT translates both local IP and port number to public IP and public port number
 - From Internet's perspective, local network has only one IP address, which is the router's
 
-## Tools
+## Tools for analyzing networks
 
 ### Wireshark
 
@@ -515,3 +517,51 @@ Useful filter stuff
 - **Analyse -> Prepare a filter** will add a filter without applying it. Then you can add more filters with **Apply as filter -> and/or...**
 - **Analyse -> Apply as Column** will add a packet's selected field e.g. TTL as a column
 - **Analyse -> Follow stream** will show reconstructed data stream of a conversation between hosts. Use to see cleartext POSTed passwords and server responsed easily.
+
+### Tcpdump
+
+- Uses `libpcap` library for packet capturing, same as Wireshark. While Wireshark provides GUI, `tcpdump` is used in the CLI.
+- Common useful arguments for `tcpdump`
+  - `-i INTERFACE` - specify network interface to listen to. `-i any` listens to all interfaces. List interfaces with `ip a s`
+  - `-w FILE` - save capture to a `.pcap` file
+  - `-r FILE` - read captured file
+  - `-c COUNT` - limit the number of captured packets
+  - `-n` - don't resolve IP addresses to avoid unnecessary DNS lookups
+  - `-nn` - don't resolve IP addresses AND port numbers like 80 -> http
+  - `-v`, `-vv`, `-vvv` - verbose output, adding e.g. TTL, packet ID and length. More v's, more stuff
+
+Examples:
+
+`tcpdump -i eth0 -c 50 -v` will capture 50 packets listening to eth0 interface, and displays packets verbosely.
+
+`tcpdump -i eht0 -w capture.pcap` will listen to eth0 interface, and write captured packets to capture.pcap
+
+#### Filtering
+
+You can filter captured packets by
+
+- host
+- port
+- protocol
+- packet length - `greater LENGTH`, `less LENGTH`
+- tcp flags
+
+- many more, check `man pacp-filter`
+
+And chain filter together with `and`, `or` and `not`.
+
+**Host** filtering examples:
+
+`tcpdump host example.com -w http.pcap` - capture all packets coming from example.com and save them to `http.pcap`. Host address can be domain name or IP.
+
+`tcpdump src host [IP address] -w http.pcap` - capture packets where host address is `[IP address]`. Also `dst` a.k.a. destination address can be specified.
+
+**Port** filtering examples:
+
+`tcpdump -i ens5 port 53 -n` - capture port 53 (DNS) packets without resolving IP address
+
+`src port PORT_NUMBER` and `dst port PORT_NUMBER` work nicely too.
+
+**Protocol** filtering examples:
+
+`tcpdump -i ens5 icmp -n` - filter by ICMP protocol, don't resolve IP addresses
