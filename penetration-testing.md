@@ -115,3 +115,88 @@ id_rsa:
 #### Step 2 - crack the hash using wordlist
 
 `john --wordlist=[wordlist.txt] zip/rar/id_rsa_hash.txt`
+
+## Metasploit
+
+An exploitation framework. Has commercial GUI version **Metasploit Pro** and FOSS CLI version **Metasploit Framework**
+
+### Different command prompts while using Metasploit
+
+- Regular: `root@ip-10-10-XX-XX:~#`
+- msfconsole: `msf6 >`
+- Context prompt: `msf6 exploit(windows/smb/ms17_010_eternalblue) >`
+- Meterpreter prompt: `meterpreter >`
+- Target system shell: `C:\Windows\system32>`
+
+### Commands
+
+`msfconsole` - Open Metasploit Framework console
+
+`search type:[moduleType] [keyword]` - Search for modules, CVE numbers, exploit names (eternalblue, heartbleed), target system. Type is optional. Example: `search type:auxiliary telnet` will search for auxiliary modules for telnet.
+
+`use [module]` - Change context to a module. Example: `use exploit/windows/smb/ms17_010_eternalblue`
+
+`use [integer]` - Use module number returned by search command. Example: `use 0`.
+
+`show options` - Print module's options, used inside a context.
+
+`set [parameter_name] [value]` - Set module option parameter value
+
+`unset [parameter_name]` or `unset all` - Clear parameter values
+
+`setg [parameter_name] [value]` - Set global parameter value (for all modules) `unsetg` will unset them. Global values are cleared on Metasploit exit.
+
+`show payloads` - List module compatible payloads
+
+`info` - Show module info inside context
+
+`info [module]` - Show module info
+
+`back` - Leave context
+
+`exploit` or `run` - Run current module. Use `-z` to background the opened session right after.
+
+`sessions` - List active sessions
+
+`sessions -i [number]` - interact with session
+
+### Modules
+
+Modules are located in: `/opt/metasploit-framework/embedded/framework/modules`
+
+Often used parameters:
+
+        RHOSTS: "Remote host". Target systems IP.
+        RPORT: "Remote port". Target systems vulnerable app's port number.
+        PAYLOAD: Payload to use.
+        LHOST: Local host IP.
+        LPORT: Port for reverse shell.
+        SESSION: Session's ID. Used for post-exploitation modules connecting to target system.
+
+#### Auxiliary
+
+        Any supporting module, such as scanners, crawlers and fuzzers
+
+#### Encoders
+
+        Encode exploit/payload to deceive signature-based (hash) AVs
+
+#### Evasion
+
+        Evade AVs that check for more than file hash
+
+#### Exploits
+
+        Code that exploits a vulnerability to get inside a system. Organized by target system (e.g. andoird, apple_ios, windows)
+
+#### Payloads
+
+        Code that runs on the exploited system. E.g. get a shell, run a command etc.
+
+#### NOPs
+
+        No OPeration. Tell CPU do nothing for one cycle. Used to pad payloads for consistent sizes.
+
+#### Post
+
+        Used during final stage of pentesting, post-exploitation.
