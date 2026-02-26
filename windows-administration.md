@@ -43,6 +43,8 @@
 
 `shutdown /s` - Shuts down system
 
+`dir` - current directory. Use `dir /s /b C:\file.txt` to find file.txt location from C-drive.
+
 #### Commands for system info
 
 `ver` - Display Windows version

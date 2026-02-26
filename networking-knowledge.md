@@ -416,3 +416,5 @@ nmap cheat sheet:
 `telnet [IP address] [port]` - access and manage devices over a network. Unencrypted, so be careful. Use for troubleshooting servers only. Example: `telnet 192.168.2.15 80` would connect to HTML server on `192.168.2.15`
 
 `wc -l` - count how many lines on command output or file
+
+`sudo su` - Switch to root user
