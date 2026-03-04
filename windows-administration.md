@@ -57,6 +57,11 @@
 
 `driverquery` - Display a list of installed device drivers
 
+`net user`
+`net localgroup`
+`net localgroup Administrators`
+`wmic useraccount get name,sid,status` - enum users and groups
+
 #### Commands for network troubleshooting
 
 `ipconfig` - Display network info like IP address, subnet mask and default gateway. `ipconfig /all` shows more info.
@@ -130,6 +135,10 @@ Lastly, grep with `Select-String` like this:
 `Get-NetIPConfiguration` - similar to ipconfig, displays network interfaces, IP adresses, DNS servers, gateway conf
 
 `Get-NetIPAddress` - detailed info on all (both active and inactive) IP addresses configured on the system
+
+`Get-LocalUser`
+`Get-LocalGroup`
+`Get-LocalGroupMember -Group "Administrators"` - Enum users and groups
 
 #### Real-Time System Analysis
 

@@ -221,6 +221,8 @@ SQL injection or RCE.
 
 `load [tool name]` - load tool. Using `help` will now show more options.
 
+`sessions -u -1` - Upgrade the most recently opened session to Meterpreter. Do this manually using `post/multi/manage/shell_to_meterpreter` module.
+
 ### Modules
 
 Modules are located in: `/opt/metasploit-framework/embedded/framework/modules`

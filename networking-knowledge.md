@@ -389,6 +389,8 @@ nmap cheat sheet:
 | `-oX <filename>`                | XML output                                                                                         |
 | `-oG <filename>`                | Grep-able output                                                                                   |
 | `-oA <basename>`                | Output in all major formats                                                                        |
+| **Vulnerability scan**          |                                                                                                    |
+| `--script vuln`                 | Scan for vulns. E.g. `-sV -vv --script vuln TARGET_IP`                                             |
 
 # Linux shells
 
