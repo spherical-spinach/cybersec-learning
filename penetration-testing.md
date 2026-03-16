@@ -116,6 +116,34 @@ id_rsa:
 
 `john --wordlist=[wordlist.txt] zip/rar/id_rsa_hash.txt`
 
+## Hydra
+
+### SSH
+
+`hydra -l root -P passwords.txt 10.80.138.189 -t 4 ssh` - target ssh
+
+| Option | Description                                         |
+|--------|-----------------------------------------------------|
+| -l     | specifies the (SSH) username for login              |
+| -P     | indicates a list of passwords                       |
+| -t     | sets the number of threads to spawn                 |
+
+
+### HTTP
+
+`hydra -l <username> -P <wordlist> 10.80.138.189 http-post-form "/:username=^USER^&password=^PASS^:F=incorrect" -s <port> -V` - target http form with specified `<port>`
+
+| Option                | Description                                                    |
+|-----------------------|----------------------------------------------------------------|
+| `-l`                    | the username for (web form) login                            |
+| `-P`                    | the password list to use                                     |
+| `http-post-form`        | The type of the form is POST                                 |
+| `<path>`                | the login page URL, for example, `login.php`                 |
+| `<login_credentials>`   | the username and password used to log in, for example `username=^USER^&password=^PASS^` |
+| `<invalid_response>`    | part of the response when the login fails                    |
+| `-V                    |` verbose output for every attempt                             |
+
+
 ## Metasploit
 
 An exploitation framework. Has commercial GUI version **Metasploit Pro** and FOSS CLI version **Metasploit Framework**
