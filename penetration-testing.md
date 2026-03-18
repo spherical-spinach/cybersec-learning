@@ -291,3 +291,40 @@ Often used parameters:
 #### Post
 
         Used during final stage of pentesting, post-exploitation.
+
+## Gobuster - web enumeration
+
+### Enumerate directories
+
+`gobuster dir -u "http://www.example.com" -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -r -x .php,.js`
+
+Explanation: 
+
+`dir` - Enumerate directories
+`-u` - set url as "http://www.example.com"
+`w` - set wordlist
+`-r` - follow redirect e.g. `301` and `302` status codes
+`-x .php,.js` - list files with `.php` or `.js` extension
+
+### Enumerate subdomains
+
+`gobuster dns -d example.com -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt`
+
+Explanation:
+
+`dns` - enumerate subdomains
+`-d` - set domain
+`-w` - set wordlist
+
+### Enumerate virtual hosts
+
+`gobuster vhost -u "http://IP-address" --domain example.com -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain --exclude-length 250-320`
+
+Explanation:
+
+`vhost` - enumerate virtual hosts
+`-u` - set URL as IP address
+`-w` - set wordlist
+`--domain example.com` - set top level `.com` and second-level `example` domains used in `Hostname:` part of HTTP request to example.com
+`--append-domain` - Add `example.com` to wordlist entries in `Hostname:` part of HTTP request
+`--exclude-length 250-320` - Filters out false positives. Apparently this command can produce fakes with sizes between `250-320`
